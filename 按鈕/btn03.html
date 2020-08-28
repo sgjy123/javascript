@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>按钮</title>
+		<style type="text/css">
+			#circle-btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+			}
+
+			.btn-container {
+				position: relative;
+			}
+
+			button {
+				border: 0;
+				border-radius: 50px;
+				color: #fff;
+				background: #5f55af;
+				padding: 15px 20px 16px 60px;
+				text-transform: uppercase;
+				background: linear-gradient(to right, #f72585 50%, #5f55af 50%);
+				background-size: 200% 100%;
+				background-position: right bottom;
+				transition: all 1s linear;
+			}
+
+			svg {
+				height: 100%;
+				background: #f72585;
+				border-radius: 50%;
+				position: absolute;
+				left: 0;
+				top: 0%;
+			}
+			button:hover {
+			   background-position: left bottom;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="circle-btn">
+			<div class="btn-container">
+				<svg t="1598597723308" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3898">
+					<path d="M514.048 860.16c-5.3248 0-10.4448-2.048-14.5408-5.9392a20.39808 20.39808 0 0 1 0-28.8768L812.6464 512 499.5072 198.8608c-7.9872-7.9872-7.9872-21.0944 0-29.0816s20.8896-7.9872 28.8768 0l318.0544 318.0544c13.312 13.312 13.312 34.816 0 48.128L528.5888 854.2208c-4.096 3.8912-9.4208 5.9392-14.5408 5.9392z"
+					 p-id="3899" fill="#e6e6e6"></path>
+					<path d="M822.8864 532.48h-634.88c-11.264 0-20.48-9.216-20.48-20.48s9.216-20.48 20.48-20.48h634.88c11.264 0 20.48 9.216 20.48 20.48s-9.216 20.48-20.48 20.48z"
+					 p-id="3900" fill="#e6e6e6"></path>
+				</svg>
+				<button>hover me</button>
+			</div>
+		</div>
+	</body>
+</html>
