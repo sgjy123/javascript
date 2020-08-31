@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css变量</title>
+		<style>
+			/* 上述代码中能否实现样式的要求 */
+			/* html,
+			body {
+				padding: 0;
+				margin: 0;
+			}
+
+			.container {
+				background-color: #ffeead;
+				border: 1px solid #666;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				align-items: center;
+				height: 100vh;
+			}
+
+			.container .item {
+				width: 25%;
+				height: 100px;
+			}
+
+			.container .item:nth-child(2n) {
+				background-color: lightgreen;
+			}
+
+			.container .item:nth-child(2n+1) {
+				background-color: lightpink;
+			} */
+			/* 下面我们使用变量的形式实现上述样式 */
+			html,body{
+				padding: 0;
+				margin: 0;
+				/* --green: lightgreen;
+				--pink: lightpink; */
+			}
+			
+			:root {
+				/* 下面两个变量表示全局变量 */
+				--green: lightgreen;
+				--pink: lightpink;
+				--fontSize: 14px;
+			}
+			
+			.container {
+				background-color: #ffeead;
+				border: 1px solid #666;
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				align-items: center;
+				height: 100vh;
+			}
+			
+			.container .item {
+				width: 25%;
+				height: 100px;
+				font-size: var(--fontSize);
+			}
+			
+			.container .item:nth-child(2n) {
+				background-color: var(--green);
+			}
+			
+			.container .item:nth-child(2n+1) {
+				background-color: var(--pink);
+			}
+			
+			.container .item1 {
+				--fontSize: 18px; /* 该变量为局部变量,可以看出局部变量会覆盖全局变量 */
+				font-size: var(--fontSize);
+				--blank: #000;
+				background-color: var(--blank) !important;
+			}
+			
+			.container .item2::before {
+				--单词1: '我是';
+				--单词2: 'sgjy';
+				--word: 'I am a front-end engineer';
+				--文字颜色: #ccc;
+				content: var(--单词1) var(--单词2) var(--word);
+				color: var(--文字颜色);
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="item1 item">1</div>
+			<div class="item2 item">2</div>
+			<div class="item3 item">3</div>
+			<div class="item4 item">4</div>
+		</div>
+	</body>
+</html>
