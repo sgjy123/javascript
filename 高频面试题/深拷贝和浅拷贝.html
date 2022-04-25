@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>深拷贝和浅拷贝</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**
+			 * 浅拷贝出现的前提：引用类型的数据（数组和对象）
+			 * 深拷贝和浅拷贝
+			 *   对象浅拷贝解决方案：
+			 *     1.JSON转换方法
+			 *       缺点: 数据类型为undifined和函数function情况下无法复制
+			 *     2.Object.assign方法
+			 *       缺点: 只能深拷贝一级属性，二级以上属性（引用类型）就是浅拷贝
+			 *     3.扩展运算符
+			 *       缺点: 只能深拷贝一级属性，二级以上属性（引用类型）就是浅拷贝
+			 *     4.递归（比较完美的解决方案）
+			 **/
+			 function cloneDeep(data) {
+				 const newData = Array.isArray(data) ? [] : {};
+				 for(let key in data) {
+					 if(data[key] && typeof data[key] === 'object') {
+						 newData[key] = cloneDeep(data[key]);
+					 } else {
+						 newData[key] = data[key];
+					 }
+				 }
+				 return newData;
+			 }
+			 const obj = {
+				 a: 1,
+				 b: undefined,
+				 c: null,
+				 arr: [1,2],
+				 obj: {
+					 a: 1,
+					 obj: {
+						 a: 11
+					 }
+				 },
+				 fun: () =>{},
+				 func: function() {}
+			 }
+			 // const obj2 = JSON.parse(JSON.stringify(obj));
+			 // const obj2 = Object.assign({},obj);
+			 // const obj2 = {...obj};
+			 const obj2 = cloneDeep(obj);
+			 obj2.a = 2;
+			 obj2.c = 2;
+			 obj2.arr[0] = 111;
+			 obj2.obj.a = 111;
+			 obj2.obj.obj.a = 111;
+			 console.log(obj, obj2);
+			 
+		</script>
+	</body>
+</html>

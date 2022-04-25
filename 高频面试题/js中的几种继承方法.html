@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>js中的几种继承方法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**  
+			 * js 中的几种继承方法
+			 *  1.原型链继承
+			 *    优点: 父类方法可以复用
+			 *    缺点:  1.父类所有的引用类型的数据（对象，数组）会被子类共享,
+			 *            更改子类的数据，其他数据会受到影响，一直变化
+			 *		    2.子类实例不能给父类构造函数传参
+			 *  2.构造函数的继承
+			 *    优点：父类的引用类型不会受子类的影响
+			 *    缺点：子类不能访问父类原型属性上的方法和参数
+			 *  3.组合继承
+			 *    优点：1.父类可以复用
+			 *         2.父类中的引用类型数据不会被共享
+			 *    缺点：会调用两次父类的构造函数,会有两份一样的属性和方法，会影响性能
+			 *  4.寄生组合继承
+			 *    目前最优的方案
+			 *  5.class类继承extends
+			 * 
+			 * */
+
+			class Person {
+				constructor() {
+					this.name = '小明';
+					this.eat = ['苹果'];
+					this.getName = function() {
+						console.log(this.name);
+					}
+					this.getEat = function() {
+						console.log(this.eat);
+					}
+				}
+				get(){
+					console.log('Person.prototype上的方法');
+				};
+			}
+			class Student extends Person {}
+			const stu1 = new Student();
+			stu1.name = '小花';
+			stu1.eat.push('香蕉');
+			console.log(stu1.name);
+			console.log(stu1.eat);
+			stu1.getName();
+			stu1.getEat();
+			stu1.get(); // 构造函数的继承需要去掉这行
+			console.log('--------')
+			const stu2 = new Student();
+			console.log(stu2.name);
+			console.log(stu2.eat);
+			stu2.getName();
+			stu2.getEat();
+			stu2.get(); // 构造函数的继承需要去掉这行
+			console.log(stu2); // 这行在方法三执行 */
+			/* function Person() {
+				 this.name = '小明';
+				 this.eat = ['苹果'];
+				 this.getName = function () {
+					 console.log(this.name);
+				 }
+				 this.getEat = function () {
+				 	console.log(this.eat);
+				 }
+			 }
+			 Person.prototype.get = ()=>{
+				 console.log('Person.prototype上的方法');
+			 }
+			 function Student() {
+				 Person.call(this); // 2.构造函数的继承
+			 }
+			 // Student.prototype = new Person();//  1.原型链继承
+			 // Student.prototype = new Person();
+			 
+			 const Fn = function () {}
+			 Fn.prototype = Person.prototype;
+			 Student.prototype = new Fn();
+			 
+			 const stu1 = new Student();
+			 stu1.name = '小花';
+			 stu1.eat.push('香蕉');
+			 console.log(stu1.name);
+			 console.log(stu1.eat);
+			 stu1.getName();
+			 stu1.getEat();
+			 stu1.get(); // 构造函数的继承需要去掉这行
+			 console.log('--------')
+			 const stu2 = new Student();
+			 console.log(stu2.name);
+			 console.log(stu2.eat);
+			 stu2.getName();
+			 stu2.getEat();
+			 stu2.get(); // 构造函数的继承需要去掉这行
+			 console.log(stu2); // 这行在方法三执行 */
+		</script>
+	</body>
+</html>

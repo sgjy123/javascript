@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>indexOf和includes用法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**  
+			 * indexOf
+			 *  字符串或者数组查找某个元素的位置，如果存在，返回索引值，如果不存在返回-1
+			 * includes(element, start)
+			 *  字符串或者数组中是否存在某个元素，如果存在，则返回true,如果不存在，返回false
+			 *  start: 可以是负数，表示从右到左过来的第几个，但是不改变搜索的方向，搜索方向还是从左到右
+			 * */
+			 const str1 = 'abc';
+			 const arr1 = [1,2,'1'];
+			 console.log(str1.indexOf(1));
+			 console.log(str1.indexOf('b'));
+			 console.log(arr1.indexOf(1));
+			 console.log(arr1.indexOf('1'));
+			 console.log(arr1.includes(3));
+			 console.log(arr1.includes('1'));
+		</script>
+	</body>
+</html>

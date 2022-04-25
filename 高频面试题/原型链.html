@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>原型链</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**  
+			 * 原型链
+			 * prototype => 函数的原型属性（普通对象）
+			 * __proto__ => 每个对象都有（普通对象），保存着该对象的构造函数
+			 * 总结：
+			 * 1.对象实例的 __proto__ === 当前对象的构造函数prototype
+			 * 
+			 * */
+			 function Test() {}
+			 Test.prototype.func = () =>{
+				 console.log(123);
+			 }
+			 Test.prototype.b = 2;
+			 const obj = new Test();
+			 console.log(obj.__proto__);
+			 console.log(Test.prototype);
+			 console.log(obj.__proto__ === Test.prototype);
+		</script>
+	</body>
+</html>

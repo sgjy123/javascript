@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件冒泡和事件代理</title>
+	</head>
+	<body>
+		<div onclick="parentFunc()">
+			<div onclick="childFunc()">children</div>
+		</div>
+		<ul onclick="clickFunc()">
+			<li data-id='1'>1</li>
+			<li data-id='2'>2</li>
+			<li data-id='3'>3</li>
+		</ul>
+		<script type="text/javascript">
+			/**  
+			 * 1.事件冒泡
+			 * 2.事件代理
+			 * 
+			 * */
+			function childFunc(e) {
+				alert('children');
+				stopBubbling(e);
+			}
+			// 事件冒泡
+			function parentFunc() {
+				alert('parent');
+			}
+			// 禁止冒泡
+			function stopBubbling(e) {
+				if (e && e.stopPropagation) {
+					e.stopPropagation();
+				} else {
+					window.event.cancelBubble = true;
+				}
+			}
+			// 事件委托
+			function clickFunc (e) {
+				const ev = e || window.event;
+				const li = ev.srcElement || ev.target;
+				console.log(li.dataset.id);
+			}
+		</script>
+	</body>
+</html>

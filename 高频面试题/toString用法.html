@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>toString用法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**
+			 * toString 用法
+			 * 1.把数据转成字符串,
+			 *   （1）不同类型的数据，调用的toString方法都是该数据各自类型的原型链上的toString
+			 *   （2）把数值转换成对应进制的数字字符串
+			 *    (3) undifined和null没有toString方法
+			 * 2.判断数据类型 Object.prototype.toString.call()
+			 * 3.可以隐式转化
+			 *   当作为判断条件出现，或者作为运算符的某一项时，toString会隐式转化
+			 */
+			// 1.事例
+			/* console.log((100).toString());
+			console.log((1.23).toString());
+			console.log(true.toString());
+			console.log(function () {}.toString());
+			console.log(([1,2]).toString());
+			console.log({a: 1}.toString());
+			console.log(null.toString());
+			console.log(undefined.toString()); */
+			
+			
+			// 2.事例
+			/* const obj = {a: 1};
+			const arr = [1,2];
+			const fn = function () {
+				return 1;
+			}
+			console.log(Object.prototype.toString.call(obj));
+			console.log(Object.prototype.toString.call(arr));
+			console.log(Object.prototype.toString.call(fn));
+			console.log(Object.prototype.toString.call(null));
+			console.log(Object.prototype.toString.call(undefined));
+			console.log(Object.prototype.toString.call(true));
+			console.log(Object.prototype.toString.call(new Date())); */
+			
+			//3.事例
+			function fn(){
+				const fn1 = function () {
+					return fn1;
+				}
+				fn1.toString = function() {
+					return 1;
+				}
+				
+				return fn1;
+			}
+			console.log(fn() === 1);
+			console.log(fn() == 1);
+			console.log(+fn());
+		</script>
+	</body>
+</html>

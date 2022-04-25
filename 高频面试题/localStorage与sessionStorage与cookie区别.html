@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>localStorage与sessionStorage与cookie区别</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**  
+			 * localStorage与sessionStorage与cookie区别
+			 * 相同点：都存储在客户端
+			 * 不同点：
+			 * 1.存储时间不同
+			 *  localStorage存储的是持久数据，除非手动删除。
+			 *  sessionStorage浏览器页面关闭，自动删除
+			 *  cookie过期时间一直有效，即使窗口关闭也有效
+			 * 2.存储大小不同
+			 * localStorage，sessionStorage存储大小大概是5M或者更大，不同浏览器大小不一样
+			 * cookie存储大小是4k或者更大，不同浏览器大小不一样
+			 * 3.数据与服务之间的交换方式
+			 * cookie的数据会自动传递到服务器，服务器端也可以写cookie到客户端
+			 * localStorage，sessionStorage不会自动把数据传递给服务，仅在本地保存
+			 * */
+			 localStorage.setItem('key','123');
+			 sessionStorage.setItem('key','123');
+			 const date = new Date(2000,1,1);
+			 document.cookie = 'key=123;expires='+date.toUTCString();
+		</script>
+	</body>
+</html>

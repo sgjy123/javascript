@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>map与forEach与forIn与forOf区别</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**  
+			 * 1.map => 返回一个新数组
+			 * 不能用break、continue阻止循环
+			 * 2.forEach
+			 * 不能用break、continue阻止循环,可以用return跳出当前的一个迭代
+			 * 相比于for刚好相反
+			 * 3.for ...in
+			 * 用于对象和数组，遍历拿到的是键名、索引值
+			 * 4.for ...of
+			 * 用于数组，遍历拿到的是键值
+			 * */
+			/* const arr = [1,2,3,4];
+			 const newArr = arr.map((item)=>{
+				 if(item == 2) {
+					 // break;
+					 // continue;
+				 }
+				 return {
+					 num: item
+				 }
+			 });
+			 console.log(newArr); */
+
+			/* const arr = [1, 2, 3, 4];
+			arr.forEach((item, index, self) => {
+				if(item == 2) {
+					// break;
+					// continue;
+					return;
+				}
+				console.log(item, index, self)
+			});
+			for (let i = 0; i < arr.length; i++) {
+				if(i == 2) {
+					// break;
+					continue;
+					// return;
+				}
+				console.log(arr[i]);
+			} */
+			const obj = {
+				name: '小明',
+				age: 23
+			}
+			const arr = [1, 2, 3, 4];
+			for (let key in obj) {
+				console.log(key, obj[key]);
+			}
+			for (let key in arr) {
+				console.log(key, arr[key]);
+			}
+			for (let key of arr) {
+				console.log(key);
+			}
+		</script>
+	</body>
+</html>
