@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>promise</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/**  
+			 * promise
+			 * 存在三种状态pending,fulfilled,rejected
+			 * pending => fulfilled,
+			 * pending => rejected,
+			 * 只能执行返回一种状态
+			 * 1.promise对象不受外界影响，一旦状态改变，就不会再变。
+			 * 2.
+			 *   a.没有抛出异常，then和catch都是返回一个resolve(fulfilled)状态的promise
+			 *   b.抛出异常，返回的都是一个reject状态的promise。
+			 * Promise.all：用于多个Promise实例，只有参数里面所有的promise都是成功的，
+			 * 才会被触发成功，一旦有一个返回失败，或者异常，就会触发失败（.catch）
+			 * 全部成功结束，一起返回
+			 * Promise.any：接收一个Promise对象集合，当其中一个成功，就返回成功的那个，
+			 * 谁先成功，谁先返回
+			 * Promise.allSettled()：用于多个Promise，等所有的Promise都已经确定状态了，
+			 * 返回一个Promise（不管成功还是失败），全部结束，一起返回（不管成功还是失败）。
+			 * Promise.race()：接收一个Promise对象集合，当其中一个执行完毕，就先返回（不管成功还是失败），谁先结束就谁先返回。
+			 * */
+			/* const p1 = new Promise((resolve, reject)=>{
+				 resolve('成功');
+				 reject('失败');
+			 });
+			 console.log(p1); */
+
+			/* const p1 = new Promise(function (resolve, reject){
+				// resolve('成功');
+				reject('失败');
+			}).then((res)=>{
+				// console.log(res)
+			}).catch((res)=>{
+				// throw new Error(res); // 此处有惊喜
+				console.log(res)
+			})
+			console.log(p1); */
+
+			const p1 = new Promise(function(resolve, reject) {
+				resolve('成功');
+				// reject('失败');
+			});
+			p1.then((res) => {
+				// console.log(res)
+			}).catch((res) => {
+				// throw new Error(res); // 此处有惊喜
+				console.log(res)
+			})
+			console.log(p1);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>async和await用法</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			// async和await用法
+			/**  
+			 * 1.async函数中await规定了，函数只能排队执行，
+			 * 2.await只能在async中才能有效。
+			 * 3.async返回的实际是一个Promise。
+			 * 4.await后面最好跟Promise。
+			 * 
+			 * */
+			function request(num){
+				return new Promise((resolve)=>{
+					setTimeout(()=>{
+						resolve(num * 3);
+					},1000);
+				});
+			}
+			async function fn() {
+				const res = await request(1);
+				const res1 = await request(res);
+				console.log(res1);
+			}
+			request(1).then((res)=>{
+				request(res).then((res)=>{
+					console.log(res);
+				})
+			})
+		</script>
+	</body>
+</html>
