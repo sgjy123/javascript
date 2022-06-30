@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>闭包</title>
+		<style type="text/css">
+			#box {
+				margin-top: 10px;
+				height: 3000px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body onscroll="scrollBody()">
+		<input id="border-btn" />
+		<div id="box">
+			
+		</div>
+		<script type="text/javascript">
+			/**  
+			 * 闭包特点：
+			 * 1.函数嵌套函数，内部函数引用外部函数变量，内部函数对象创建了，此时形成闭包。 
+			 * 
+			 * */
+			/* function fn1() {
+				const a = 1;
+
+				function fn2() {
+					console.log(a);
+				}
+				fn2();
+			}
+			fn1(); */
+			function get() {
+				console.log('请求接口');
+			}
+			// 防抖
+			function shake(fn, delay) {
+				let timer = null;
+				return function() {
+					if (timer) {
+						clearTimeout(timer);
+					}
+					timer = setTimeout(() => {
+						fn && fn();
+					}, delay);
+				}
+			}
+			document.getElementById('border-btn').oninput = shake(get, 500);
+			// 节流
+			function throttling (fn, delay) {
+				let flag = true;
+				return function () {
+					if(!flag) return;
+					flag = false;
+					setTimeout(()=>{
+						fn && fn();
+						flag = true;
+					},delay);
+				}
+			}
+			const scrollBody = throttling(get, 500);
+		</script>
+	</body>
+</html>
