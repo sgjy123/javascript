@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>截取-图片</title>
+	</head>
+	<body>
+		<canvas id="c" width="500" height="500" style="border: 1px solid #ccc;"></canvas>
+
+		<script>
+		     // 设置图片宽高
+			 // drawImage(image, dx, dy, dw, dh)
+			 // dw 用来定义图片的宽度，dh 定义图片的高度。
+			/* 
+			 const cnv = document.getElementById('c')
+			 const cxt = cnv.getContext('2d')
+			 		
+			 const image = new Image()
+			 image.src = './img/icon-badge-01.png'
+			 		
+			 image.onload = () => {
+			   cxt.drawImage(image, 30, 30, 100, 100)
+			 }
+			 */
+
+			// 截图图片同样使用drawImage() 方法，只不过传入的参数数量比之前都多，而且顺序也有点不一样了。
+			// drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)
+			/* 
+			image: 图片对象
+			sx: 开始截取的横坐标
+			sy: 开始截取的纵坐标
+			sw: 截取的宽度
+			sh: 截取的高度
+			dx: 图片左上角的横坐标位置
+			dy: 图片左上角的纵坐标位置
+			dw: 图片宽度
+			dh: 图片高度
+		  */
+
+			const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			const image = new Image()
+			image.src = './img/icon-badge-01.png'
+
+			image.onload = () => {
+				cxt.drawImage(image, 0, 0, 100, 100, 30, 30, 200, 200)
+			}
+		</script>
+	</body>
+</html>

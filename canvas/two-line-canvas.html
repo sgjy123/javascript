@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>两条直接</title>
+	</head>
+	<body>
+		<canvas id="c" width="300" height="300" style="border: 1px solid #ccc;"></canvas>
+		
+		<script>
+		  const cnv = document.getElementById('c')
+		  const cxt = cnv.getContext('2d')
+		
+		  cxt.moveTo(20, 100)
+		  cxt.lineTo(200, 100)
+		  cxt.stroke()
+		
+		  cxt.moveTo(20, 120.5)
+		  cxt.lineTo(200, 120.5)
+		  cxt.stroke()
+		  
+		  /* 你会看到两条不一样宽度的线条：这个是因为
+		  默认情况下 canvas 会将线条的中心点和像素的底部对齐，所以会导致显示效果是 2px 和非纯黑色问题*/
+		</script>
+	</body>
+</html>

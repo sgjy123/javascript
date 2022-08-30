@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>文字</title>
+	</head>
+	<body>
+		<canvas id="c" width="500" height="300" style="border: 1px solid #ccc;"></canvas>
+
+		<script>
+			// 使用 strokeText() 方法进行文本描边
+			/* 
+				strokeText(text, x, y, maxWidth)
+				text: 字符串，要绘制的内容
+				x: 横坐标，文本左边要对齐的坐标（默认左对齐）
+				y: 纵坐标，文本底边要对齐的坐标
+				maxWidth: 可选参数，表示文本渲染的最大宽度（px），如果文本超出 maxWidth 设置的值，文本会被压缩。
+			 */
+			/* const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.font = '60px Arial' // 将字号设置成 60px，方便观察
+			cxt.strokeStyle = 'pink' // 设置文本描边颜色
+
+			cxt.strokeText('你好，前端', 30, 90)
+ */
+
+			// 使用 fillText() 可填充文本。
+			/* 
+				fillText(text, x, y, maxWidth)
+				同strokeText()方法
+			 */
+			const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.font = '60px Arial'
+			cxt.fillStyle = 'pink' // 设置文本填充色
+			cxt.fillText('你好，前端', 30, 90)
+			
+			
+		</script>
+	</body>
+</html>

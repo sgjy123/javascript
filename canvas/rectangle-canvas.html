@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>矩形</title>
+	</head>
+	<body>
+		<canvas id="c" width="300" height="300" style="border: 1px solid #ccc;"></canvas>
+		<script>
+			// 画一个矩形，可以使用线的闭合，来实现；也可以使用第二种方法：strokeRect()方法去画一个矩形
+			// 下面我们展示第一种方法：
+			// 方法一：使用线
+			/* const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.moveTo(50, 50)
+			cxt.lineTo(200, 50)
+			cxt.lineTo(200, 120)
+			cxt.lineTo(50, 120)
+			cxt.lineTo(50, 50)
+
+			cxt.stroke() */
+			// 第二种方法：使用strokeRect()方法
+			/* const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d') */
+
+			// strokeStyle 属性
+			// strokeRect(x, y, width, height) 方法
+			/* cxt.lineWidth = 10
+			cxt.strokeStyle = 'pink'
+			cxt.strokeRect(50, 50, 200, 100) */
+			// 注意：下面三点
+			// strokeStyle：设置描边的属性（颜色、渐变、图案）
+			// strokeRect(x, y, width, height)：描边矩形（x和y是矩形左上角起点；width 和 height 是矩形的宽高）
+			// strokeStyle 必须写在 strokeRect() 前面，不然样式不生效。
+
+
+			// 矩形画出来了，那么我们怎么给这个矩形填充颜色呢？回答：使用 fillRect() 填充矩形
+			// fillStyle 属性
+			// fillRect(x, y, width, height) 方法
+			/* const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+			cxt.fillStyle = 'pink'
+			cxt.fillRect(50, 50, 200, 100) */
+			// 这样你会发现其实fillRect() 和 strokeRect() 方法差不多，但 fillRect() 的作用是填充。
+			// 需要注意的是fillStyle 必须写在 fillRect() 之前，不然样式不生效。
+
+			// 那么如果我们同时使用strokeRect() 和 fillRect()会有什么样的效果呢
+			/* const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.strokeStyle = 'red'
+			cxt.strokeRect(50, 50, 200, 100) // strokeRect(x, y, width, height)
+			cxt.fillStyle = 'yellow'
+			cxt.fillRect(50, 50, 200, 100) */
+			// 从上面的例子不难看出同时使用 strokeRect() 和 fillRect() 会产生描边和填充的效果
+
+			// 其实还有一种方法可以生成矩形
+			// 使用 rect() 生成矩形
+			/* rect() 和 fillRect() 、strokeRect() 的用法差不多，唯一的区别是：
+strokeRect() 和 fillRect() 这两个方法调用后会立即绘制；rect() 方法被调用后，不会立刻绘制矩形，而是需要调用 stroke() 或 fill() 辅助渲染。 */
+			/* const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.strokeStyle = 'red'
+			cxt.fillStyle = 'pink'
+
+			cxt.rect(50, 50, 200, 100) // rect(x, y, width, height)
+
+			cxt.stroke()
+			cxt.fill() */
+
+			// 那我现在想清空矩形，使用 clearRect() 清空矩形
+			/* const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.fillStyle = 'pink' // 设置填充颜色
+			cxt.fillRect(50, 50, 200, 200) // 填充矩形
+
+			cxt.clearRect(60, 60, 180, 90) */ // 清空矩形
+			
+			/* const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+			
+			cxt.strokeStyle = 'red'
+			cxt.fillStyle = 'pink'
+			
+			cxt.rect(50, 50, 200, 100) // rect(x, y, width, height)
+			
+			cxt.stroke()
+			cxt.fill() 
+			cxt.clearRect(60, 60, 180, 80) */ // 清空矩形
+		</script>
+	</body>
+</html>

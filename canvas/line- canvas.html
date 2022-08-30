@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>canvas-line</title>
+		<style type="text/css">
+		
+		/* 这里不推荐 */
+			/* #c {
+				width: 400px;
+				height: 400px;
+				border: 1px solid #ccc;
+			} */
+		</style>
+	</head>
+	<body>
+		<!-- <canvas id="c" width="300" height="200"></canvas> -->
+		<canvas id="c" style="border: 1px solid #ccc;"></canvas>
+		<script type="text/javascript">
+			// 获取元素	
+			const cnv = document.getElementById('c');
+			// 获取画布
+			const cxt = cnv.getContext('2d');
+			// 绘制图形
+			cxt.moveTo(100, 100); // 起点坐标
+
+			cxt.lineTo(200, 100); // 终点坐标
+			// 连接终点
+			cxt.stroke();
+			console.log(cnv.width) // 获取 canvas 的宽度，输出：300
+			console.log(cnv.height) // 获取 canvas 的高度，输出：150
+		</script>
+	</body>
+</html>

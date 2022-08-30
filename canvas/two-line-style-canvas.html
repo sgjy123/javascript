@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>两条设置样式的线</title>
+	</head>
+	<body>
+		<canvas id="c" width="300" height="300" style="border: 1px solid #ccc;"></canvas>
+
+		<script>
+			/* 下面代码会发现上面的设置了样式，下面的线条也被影响了 */
+			/* 
+			const cnv = document.getElementById('c')
+			  const cxt = cnv.getContext('2d')
+			
+			  // 第一条线
+			  cxt.moveTo(20, 100)
+			  cxt.lineTo(200, 100)
+			  cxt.lineWidth = 10
+			  cxt.strokeStyle = 'pink'
+			  cxt.stroke()
+			
+			  // 第二条线
+			  cxt.moveTo(20, 120.5)
+			  cxt.lineTo(200, 120.5)
+			  cxt.stroke()
+			*/
+
+			/* 那么怎么解决这个问题呢*/
+			// 1.使用 beginPath() 方法，重新开一个路径
+			// 2.设置新线段的样式（必须项）
+
+			// 下面是只使用 beginPath()
+			// const cnv = document.getElementById('c')
+			// const cxt = cnv.getContext('2d')
+
+			// // 第一条线
+			// cxt.moveTo(20, 100)
+			// cxt.lineTo(200, 100)
+			// cxt.lineWidth = 10
+			// cxt.strokeStyle = 'pink'
+			// cxt.stroke()
+
+			// // 第二条线
+			// cxt.beginPath() // 重新开启一个路径
+			// cxt.moveTo(20, 120.5)
+			// cxt.lineTo(200, 120.5)
+			// cxt.stroke()
+
+			const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			// 第一条线
+			cxt.moveTo(20, 100)
+			cxt.lineTo(200, 100)
+			cxt.lineWidth = 10
+			cxt.strokeStyle = 'pink'
+			cxt.stroke()
+		
+			// 第二条线
+			// cxt.beginPath() // 重新开启一个路径，如果不用这个方法的话，你会发现是共同作用的，所以正确的方法是：在设置 beginPath() 的同时，也各自设置样式。这样就能做到相互不影响了。
+			cxt.moveTo(20, 120.5)
+			cxt.lineTo(200, 120.5)
+			cxt.lineWidth = 4
+			cxt.strokeStyle = 'red'
+			cxt.stroke()
+		</script>
+	</body>
+</html>

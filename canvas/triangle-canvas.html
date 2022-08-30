@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>三角形</title>
+	</head>
+	<body>
+		<canvas id="c" width="300" height="300" style="border: 1px solid #ccc;"></canvas>
+
+		<script>
+			/* const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.moveTo(50, 50)
+			cxt.lineTo(200, 50)
+			cxt.lineTo(200, 200)
+
+			// 注意点：如果使用 lineTo 闭合图形，是不能很好闭合拐角位的。
+			cxt.lineTo(50, 50) // 闭合
+			// 当时设置了线条宽度之后你会发现，其实并没有闭合完整
+			cxt.lineWidth = 20
+
+			cxt.stroke() */
+
+			// 如果需要真正闭合，可以使用 closePath() 方法。
+
+			const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.moveTo(50, 50)
+			cxt.lineTo(200, 50)
+			cxt.lineTo(200, 200)
+			// 手动闭合
+			cxt.closePath()
+
+			cxt.lineJoin = 'miter' // 线条连接的样式。miter: 默认; bevel: 斜面; round: 圆角
+			cxt.lineWidth = 20
+			cxt.stroke()
+		</script>
+	</body>
+</html>

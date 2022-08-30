@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>圆形和半圆</title>
+	</head>
+	<body>
+		<canvas id="c" width="300" height="300" style="border: 1px solid #ccc;"></canvas>
+		<canvas id="d" width="300" height="300" style="border: 1px solid #ccc;"></canvas>
+
+		<script>
+			const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.beginPath()
+			cxt.arc(150, 150, 80, 0, 360 * Math.PI / 180)
+			cxt.closePath()
+
+			cxt.stroke()
+
+			// 绘制圆形的方法是 arc()。
+			// arc(x, y, r, sAngle, eAngle，counterclockwise)
+			/* 
+			x 和 y: 圆心坐标
+			r: 半径
+			sAngle: 开始角度
+			eAngle: 结束角度
+			counterclockwise: 绘制方向（true: 逆时针; false: 顺时针），默认 false
+			开始角度和结束角度，都是以弧度为单位。例如 180°就写成 Math.PI ，360°写成 Math.PI * 2 ，以此类推。
+			
+			在实际开发中，为了让自己或者别的开发者更容易看懂弧度的数值，1°应该写成 Math.PI / 180。
+			
+			100°: 100 * Math.PI / 180
+			110°: 110 * Math.PI / 180
+			241°: 241 * Math.PI / 180
+			注意：绘制圆形之前，必须先调用 beginPath() 方法！！！在绘制完成之后，还需要调用 closePath() 方法！！！
+		  */
+
+			const cnv1 = document.getElementById('d')
+			const cxt1 = cnv1.getContext('2d')
+
+			cxt1.beginPath()
+			cxt1.arc(150, 150, 100, 0, 180 * Math.PI / 180, true) // 逆时针
+			cxt1.closePath()
+
+			cxt1.stroke()
+		</script>
+	</body>
+</html>

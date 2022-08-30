@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>图片</title>
+	</head>
+	<body>
+		<canvas id="c" width="500" height="500" style="border: 1px solid #ccc;"></canvas>
+		
+		<script>
+		  const cnv = document.getElementById('c')
+		  const cxt = cnv.getContext('2d')
+		
+		  // 1 创建 Image 对象
+		  const image = new Image()
+		
+		  // 2 引入图片
+		  image.src = './img/icon-badge-01.png';
+		
+		  // 3 等待图片加载完成
+		  image.onload = () => {
+		    // 4 使用 drawImage() 方法渲染图片
+		    cxt.drawImage(image, 30, 30)
+		  }
+		</script>
+	</body>
+</html>

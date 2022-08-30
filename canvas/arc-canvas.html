@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>弧线</title>
+	</head>
+	<body>
+		<canvas id="c" width="300" height="300" style="border: 1px solid #ccc;"></canvas>
+
+		<script>
+			// 方法一：arc(),通过画圆不闭合
+			/* const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.beginPath()
+			cxt.arc(150, 150, 100, 0, 30 * Math.PI / 180)
+
+			cxt.stroke() */
+
+			// 方法二：
+			const cnv = document.getElementById('c')
+			const cxt = cnv.getContext('2d')
+
+			cxt.moveTo(40, 40)
+			cxt.arcTo(120, 40, 120, 120, 80)
+
+			cxt.stroke()
+		</script>
+	</body>
+</html>
