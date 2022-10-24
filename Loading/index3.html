@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Loading-条纹加载</title>
+		<link rel="stylesheet" href="./style.css">
+		<style>
+			.progress-3 {
+			  width:120px;
+			  height:20px;
+			  border-radius: 20px;
+			  background:
+			   repeating-linear-gradient(135deg,#f03355 0 10px,#ffa516 0 20px) 0/0% no-repeat,
+			   repeating-linear-gradient(135deg,#ddd 0 10px,#eee 0 20px) 0/100%;
+			  animation:p3 2s infinite;
+			}
+			@keyframes p3 {
+			    100% {background-size:100%}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="progress-3"></div>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Loading-内嵌加载</title>
+		<link rel="stylesheet" href="./style.css">
+		<style>
+			.progress-6 {
+			  width:120px;
+			  height:22px;
+			  border-radius: 20px;
+			  color: #514b82;
+			  border:2px solid;
+			  position: relative;
+			}
+			.progress-6::before {
+			  content:"";
+			  position: absolute;
+			  margin:2px;
+			  inset:0 100% 0 0;
+			  border-radius: inherit;
+			  background: #514b82;
+			  animation:p6 2s infinite;
+			}
+			@keyframes p6 {
+			    100% {inset:0}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="progress-6"></div>
+	</body>
+</html>

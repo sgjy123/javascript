@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Loading-平滑加载</title>
+		<link rel="stylesheet" href="./style.css">
+		<style>
+			.progress-1 {
+			  width:120px;
+			  height:20px;
+			  background:
+			   linear-gradient(#000 0 0) 0/0% no-repeat
+			   #ddd;
+			  animation:p1 2s infinite linear;
+			}
+			@keyframes p1 {
+			    100% {background-size:100%}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="progress-1"></div>
+	</body>
+</html>

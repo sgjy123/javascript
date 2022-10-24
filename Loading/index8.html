@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Loading-斑马线加载</title>
+		<link rel="stylesheet" href="./style.css">
+		<style>
+			.progress-8 {
+			  width:60px;
+			  height:60px;
+			  border-radius: 50%;
+			  -webkit-mask:linear-gradient(0deg,#000 55%,#0000 0) bottom/100% 18.18%;
+			  background:
+			   linear-gradient(#f03355 0 0) bottom/100% 0% no-repeat
+			   #ddd;
+			  animation:p8 2s infinite steps(7);
+			}
+			@keyframes p8 {
+			    100% {background-size:100% 115%}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="progress-8"></div>
+	</body>
+</html>
