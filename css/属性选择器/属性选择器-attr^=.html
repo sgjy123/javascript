@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css属性选择器</title>
+		<style>
+			/* 必须是开头 */
+			div[class^="test"] {
+				background-color: #66cdcc;
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div class="first_test test">第一个div元素。</div>
+		<div class="second">第二个div元素。</div>
+		<div class="test">第三个div元素。</div>
+		<div class="test_aa">第三个div元素。</div>
+		<div class="first test">第一个div元素。</div>
+		<div class="first test_test">第一个div元素。</div>
+		<p class="test">这是段落中的文本。</p>
+	</body>
+</html>

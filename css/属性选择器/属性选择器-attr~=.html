@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>css属性选择器</title>
+		<style>
+			a[title~="click"] {
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<a href="www.baidu.com" target="_blank" title="ab click">点我打开新页</a>
+		<a href="www.baidu.com" title="click">点我</a>
+		<a href="www.baidu.com" title="aclickb">点我</a>
+	</body>
+</html>
