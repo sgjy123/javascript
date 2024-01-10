@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>代码优化</title>
+	</head>
+	<body>
+		<script>
+			// 1.if 判断的优化
+			/* let commodity = {
+			  phone: '手机',
+			  computer: '电脑',
+			  television: '电视',
+			  gameBoy: '游戏机',
+			}
+			
+			function price(name) {
+			  if (name === commodity.phone) {
+			    console.log(1999)
+			  } else if (name === commodity.computer) {
+			    console.log(9999)
+			  } else if (name === commodity.television) {
+			    console.log(2999)
+			  } else if (name === commodity.gameBoy) {
+			    console.log(3999)
+			  }
+			}
+			price('手机') // 9999 */
+			
+			// 优化方案 Switch
+			/* let commodity = {
+			  phone: '手机',
+			  computer: '电脑',
+			  television: '电视',
+			  gameBoy: '游戏机',
+			}
+			const price = (name) => {
+			  switch (name) {
+			    case commodity.phone:
+			      console.log(1999)
+			      break
+			    case commodity.computer:
+			      console.log(9999)
+			      break
+			    case commodity.television:
+			      console.log(2999)
+			      break
+			    case commodity.gameBoy:
+			      console.log(3999)
+			      break
+			  }
+			}
+			price('手机') // 9999 */
+			// 更优的方法: 策略模式
+			const commodity = new Map([
+			  ['phone', 1999],
+			  ['computer', 9999],
+			  ['television', 2999],
+			  ['gameBoy', 3999],
+			])
+			
+			const price = (name) => {
+			  return commodity.get(name)
+			}
+			let computerPrice = price('computer') // 1999
+			console.log(computerPrice);
+		</script>
+	</body>
+</html>

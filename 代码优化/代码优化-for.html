@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>代码优化</title>
+	</head>
+	<body>
+		<script>
+			/* 在 JavaScript 中，我们可以使用 for()， while()， for(in)，for(of)几种循环，事实上，这三种循环中 for(in) 的效率极差，因为他需要查询散列键，所以应该尽量少用。 */
+			// for 循环是最传统的语句，它以变量 i 作为索引，以跟踪访问的位置，对数组进行操作。
+			var arr = ['a', 'b', 'c']
+			for (var i = 0; i < arr.length; i++) {
+			  console.log(arr[i]) //结果依次a,b,c
+			}
+			// 以上的方法有一个问题：就是当数组的长度到达百万级时，arr.length 就要计算一百万次，这是相当耗性能的。所以可以采用以下方法就行改良。
+			var arr = ['a', 'b', 'c']
+			for (var i = 0, length = arr.length; i < length; i++) {
+			  console.log(arr[i]) //结果依次a,b,c
+			}
+			// 此时 arr.length 只需要计算一次，优化了性能。
+			
+			/* for-in 一般用来来遍历对象的属性的，不过属性需要 enumerable（可枚举）才能被读取到。同时 for-in 也可以遍历数组，遍历数组的时候遍历的是数组的下标值。 */
+			var obj = { 0: 'a', 1: 'b', 2: 'c' }
+			for (var key in obj) {
+			  console.log(key) //结果为依次为0，1，2
+			}
+			
+			var arr = ['a', 'b', 'c']
+			for (var key in arr) {
+			  console.log(key) //结果为依次为0，1，2
+			}
+			// for-of 语句看着有点像 for-in 语句，但是和 for-of 语句不同的是它不可以循环对象，只能循环数组。
+			var arr = ['a', 'b', 'c']
+			for (var value of arr) {
+			  console.log(value) // 结果依次为a,b,c
+			}
+			
+			/* for-of 比 for-in 循环遍历数组更好。for-of 只要具有 Iterator 接口的数据结构，都可以使用它迭代成员。它直接读取的是键值。for-in 需要穷举对象的所有属性，包括自定义的添加的属性也能遍历到。且 for-in 的 key 是 String 类型，有转换过程，开销比较大。
+
+所以在开发过程中循环数组尽量避免使用 for-in。 */
+
+		</script>
+	</body>
+</html>

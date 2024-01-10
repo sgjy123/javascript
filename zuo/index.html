@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- <script src="math.js"></script> -->
+		<script src="./bignumber.js"></script>
+		<style>
+			body,
+			html {
+				margin: 0;
+				padding: 0;
+			}
+
+			.box {
+				width: 100%;
+				height: 400px;
+				background-color: #EC5F4D;
+				position: relative;
+			}
+
+			.box-txt_box {
+				text-align: center;
+				padding-top: 40px;
+			}
+
+			.box-txt {
+				color: #fff;
+			}
+
+			.box-txt.box-txt1 {
+				font-size: 26px;
+				line-height: 35px;
+			}
+
+			.box-list_box {
+				position: absolute;
+				bottom: -100px;
+				display: flex;
+				width: 60%;
+				margin: 0 auto;
+				left: 0;
+				right: 0;
+			}
+
+			.box-list_box-item {
+				width: 25%;
+				padding: 0 10px;
+			}
+
+			.box-list_box-item-img {
+				width: 100%;
+				height: 185px;
+			}
+
+			.box-list_box-item-img img {
+				width: 100%;
+				height: 100%;
+			}
+
+			.box-list_box-item-txt {
+				position: relative;
+				background-color: #F6F6F6;
+				height: 100px;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				text-align: center;
+			}
+
+			.box-list_box-item-txt-font1 {
+				padding: 10px;
+				font-size: 14px;
+				color: #222;
+			}
+
+			.box-list_box-item-txt-font2 {
+				font-size: 14px;
+				color: #ccc;
+			}
+
+			.box-list_box-item:hover .box-list_box-item-txt {
+				background-color: #fff;
+			}
+
+			.box2 {
+				background-color: #F6F6F6;
+				height: 200px;
+			}
+
+			.box-list_box-item-txt-tip {
+				position: absolute;
+				top: -40px;
+				height: 40px;
+				width: 100%;
+				display: flex;
+			}
+
+			.box-list_box-item-txt-tip span {
+				display: inline-block;
+				height: 40px;
+				line-height: 40px;
+			}
+
+			.box-list_box-item-txt-tip .price {
+				width: 100px;
+				background-color: #fff;
+				color: #EC5F4D;
+			}
+
+			.box-list_box-item-txt-tip .info {
+				width: calc(100% - 100px);
+				text-align: center;
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="box-txt_box">
+				<div class="box-txt1 box-txt">New Courses</div>
+				<div class="box-txt2 box-txt">Learn to develop Android and i0S applications and Web Development within
+					six weeks from a teache</div>
+				<div class="box-txt3 box-txt">with real-world experience. Get a 75% discount if you buy it here</div>
+			</div>
+			<div class="box-list_box">
+				<div class="box-list_box-item">
+					<div class="box-list_box-item-img">
+						<img src="./img/01.jpg" alt="人">
+					</div>
+					<div class="box-list_box-item-txt">
+						<div class="box-list_box-item-txt-font1">
+							THE ULTIMATE ETHICAL HACKINGBOOT CAMP: BEGINNER TO PRO
+						</div>
+						<div class="box-list_box-item-txt-font2">
+							March 8.2017 / No Comments
+						</div>
+						<div class="box-list_box-item-txt-tip">
+							<span class="price">$30</span>
+							<span class="info">☆☆☆☆☆</span>
+						</div>
+					</div>
+				</div>
+				<div class="box-list_box-item">
+					<div class="box-list_box-item-img">
+						<img src="./img/01.jpg" alt="人">
+					</div>
+					<div class="box-list_box-item-txt">
+						<div class="box-list_box-item-txt-font1">
+							THE ULTIMATE ETHICAL HACKINGBOOT CAMP: BEGINNER TO PRO
+						</div>
+						<div class="box-list_box-item-txt-font2">
+							March 8.2017 / No Comments
+						</div>
+						<div class="box-list_box-item-txt-tip">
+							<span class="price">$30</span>
+							<span class="info">☆☆☆☆☆</span>
+						</div>
+					</div>
+				</div>
+				<div class="box-list_box-item">
+					<div class="box-list_box-item-img">
+						<img src="./img/01.jpg" alt="人">
+					</div>
+					<div class="box-list_box-item-txt">
+						<div class="box-list_box-item-txt-font1">
+							THE ULTIMATE ETHICAL HACKINGBOOT CAMP: BEGINNER TO PRO
+						</div>
+						<div class="box-list_box-item-txt-font2">
+							March 8.2017 / No Comments
+						</div>
+						<div class="box-list_box-item-txt-tip">
+							<span class="price">$30</span>
+							<span class="info">☆☆☆☆☆</span>
+						</div>
+					</div>
+				</div>
+				<div class="box-list_box-item">
+					<div class="box-list_box-item-img">
+						<img src="./img/01.jpg" alt="人">
+					</div>
+					<div class="box-list_box-item-txt">
+						<div class="box-list_box-item-txt-font1">
+							THE ULTIMATE ETHICAL HACKINGBOOT CAMP: BEGINNER TO PRO
+						</div>
+						<div class="box-list_box-item-txt-font2">
+							March 8.2017 / No Comments
+						</div>
+						<div class="box-list_box-item-txt-tip">
+							<span class="price">$30</span>
+							<span class="info">☆☆☆☆☆</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="box2"></div>
+		<script type="text/javascript">
+			let big = new BigNumber('2222222222222');
+			// let big = new BigNumber('2222222222222');
+			// console.log(big);
+			// console.log(new BigNumber('').toFixed());
+			// console.log(new BigNumber(undefined).toFixed());
+			// console.log(big.multipliedBy('100').toString());
+			// console.log(big.plus(new BigNumber('11111111111111')).toFixed());
+			
+			// // let a = math.bignumber('99999999999999999999');
+			// // console.log(a);
+			// // console.log(typeof a.toString());
+			
+			// const treeData = [
+			//   {
+			//     id: "1",
+			//     name: "测试1",
+			//     pId: "0",
+			//     type: "group",
+			//     children: [
+			//       {
+			//         id: "11",
+			//         name: "测试11",
+			//         pId: "1",
+			//         type: "group",
+			//         children: [
+			//           {
+			//             id: "111",
+			//             name: "测试111",
+			//             pId: "11",
+			//             type: "group",
+			//             children: [
+			//               {
+			//                 id: "1111",
+			//                 name: "测试1111",
+			//                 pId: "111",
+			//               },
+			//               {
+			//                 id: "1112",
+			//                 name: "测试1112",
+			//                 pId: "111",
+			//               },
+			//             ],
+			//           },
+			//           {
+			//             id: "112",
+			//             name: "测试112",
+			//             pId: "11",
+			//             children: [
+			//               {
+			//                 id: "1121",
+			//                 name: "测试1121",
+			//                 pId: "112",
+			//               },
+			//             ],
+			//           },
+			//           {
+			//             id: "113",
+			//             name: "测试113",
+			//             pId: "11",
+			//           },
+			//         ],
+			//       },
+			//       {
+			//         id: "12",
+			//         name: "测试12",
+			//         pId: "1",
+			//         type: "group",
+			//         children: [
+			//           {
+			//             id: "121",
+			//             name: "测试121",
+			//             pId: "12",
+			//           },
+			//         ],
+			//       },
+			//       {
+			//         id: "13",
+			//         name: "测试13",
+			//         pId: "1",
+			//       },
+			//       {
+			//         id: "14",
+			//         name: "测试14",
+			//         pId: "1",
+			//       },
+			//     ],
+			//   },
+			//   {
+			//     id: "2",
+			//     name: "测试2",
+			//     pId: "0",
+			//     children: [
+			//       {
+			//         id: "21",
+			//         name: "测试21",
+			//         pId: "2",
+			//         children: [
+			//           {
+			//             id: "211",
+			//             name: "测试211",
+			//             pId: "21",
+			//           },
+			//           {
+			//             id: "212",
+			//             name: "测试212",
+			//             pId: "21",
+			//           },
+			//         ],
+			//       },
+			//       {
+			//         id: "22",
+			//         name: "测试22",
+			//         pId: "2",
+			//       },
+			//     ],
+			//   },
+			// ];
+			// function getParentNode(data, key) {
+			//   for (let i = 0; i < data.length; i++) {
+			//     if (data[i].children?.length) {
+			//       if (data[i].children.some((item) => item.id === key)) {
+			//         return data[i]
+			//       } else {
+			//         const temp = getParentNode(data[i].children, key)
+			//         if (temp) return temp
+			//       }
+			//     }
+			//   }
+			//   return null
+			// }
+			// function getAllParentNode(data, key) {
+			//   const arr = []
+			//   const fn = (data, key) => {
+			//     const p = getParentNode(data, key)
+			//     if (p && p.id) {
+			//       arr.push(p)
+			//       fn(data, p.id)
+			//     }
+			//   }
+			//   fn(data, key)
+			//   return arr
+			// }
+			// const pArr1 = getAllParentNode(treeData, "1121");
+			// console.log(pArr1)
+			
+			// const items = [
+			// 	{
+			// 		name: '小张'
+			// 	},
+			// 	{
+			// 		name: '小明'
+			// 	},
+			// ];
+			// console.log(items); // [1, 2, 3]
+			
+			// const reversedItems = items.toReversed();
+			// console.log(reversedItems); // [3, 2, 1]
+			// console.log(items); // [1, 2, 3]
+			
+			var createCounter = function(init) {
+			    return {
+					init: init,
+			        increment: function() {
+			            return ++init;
+			        },
+			        decrement: function() {
+			             return --init;
+			        },
+			        reset: function() {
+			            return this.init;
+			        }
+			    }
+			};
+			// const counter = createCounter(5);
+			// console.log(
+			// counter.increment(), // 6
+			// counter.reset(), // 5
+			// counter.decrement(), // 4
+			// )
+			const counter = createCounter(0);
+			console.log(
+			counter.increment(), // 6
+			counter.increment(), // 6
+			counter.decrement(), // 6
+			counter.reset(), // 5
+			counter.reset(), // 4
+			)
+		</script>
+	</body>
+</html>

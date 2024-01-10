@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>代码优化</title>
+	</head>
+	<body>
+		<script>
+			// 数组去重是实际开发处理数据中经常遇到的，方法有很多，这里就不一一例举了。
+			// 1、最传统的方法：利用数组的 indexOf 下标属性来查询。
+			let arr = [1, 1, 2, 3, 5, 3, 1, 5, 6, 7, 4];
+			function unique4(arr) {
+			  var newArr = []
+			  for (var i = 0; i < arr.length; i++) {
+			    if (newArr.indexOf(arr[i]) === -1) {
+			      newArr.push(arr[i])
+			    }
+			  }
+			  return newArr
+			}
+			console.log(unique4(arr))
+			// [1, 2, 3, 5, 6, 7, 4]
+			// 2、优化：利用 ES6 的 Set 方法。
+			function unique4(arr) {
+			  return Array.from(new Set(arr)) // 利用Array.from将Set结构转换成数组
+			}
+			console.log(unique4(arr))
+			// [1, 2, 3, 5, 6, 7, 4]
+			// 3.优化：使用filter方法
+			function unique4 (arr) {
+				const uniqueArray = arr.filter((value, index, self) => {
+				    return self.indexOf(value) === index;
+				});
+				return uniqueArray;
+			}
+			console.log(unique4(arr))
+			// 4.优化：使用reduce方法
+			function unique4 (arr) {
+				const uniqueArray = arr.reduce((accumulator, currentValue) => {
+				    if (!accumulator.includes(currentValue)) {
+				        accumulator.push(currentValue);
+				    }
+				    return accumulator;
+				}, []);
+				return uniqueArray;
+			}
+			console.log(unique4(arr))
+
+		</script>
+	</body>
+</html>

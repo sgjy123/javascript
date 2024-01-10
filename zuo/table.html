@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.ancestor {
+			    background-color: dodgerblue;
+			}
+			.brother {
+			    background-color: skyblue;
+			}
+			col.selected || td {
+			    background-color: skyblue;
+			}
+			p::first-line {color: blue;}
+			#text {
+				color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="1" width="600">
+		    <colgroup>
+		        <col>
+		        <col span="2" class="ancestor">
+		        <col span="2" class="brother">
+		    </colgroup>
+		    <tr>
+		        <td> </td>
+		        <th scope="col">后代选择符</th>
+		        <th scope="col">子选择符</th>
+		        <th scope="col">相邻兄弟选择符</th>
+		        <th scope="col">随后兄弟选择符</th>
+		    </tr>
+		    <tr>
+		        <th scope="row">示例</th>
+		        <td>.foo .bar {}</td>
+		        <td>.foo > .bar {}</td>
+		        <td>.foo + .bar {}</td>
+		        <td>.foo ~ .bar {}</td>
+		    </tr>
+		</table>
+		<br>
+		<table border="1" width="200">
+		    <colgroup>
+		        <col span="2">
+		        <col class="selected">
+		    </colgroup>
+		    <tbody>
+		        <tr>
+		            <td>A</td>
+		            <td>B</td>
+		            <td>C</td>
+		        </tr>
+		        <tr>
+		            <td colspan="2">D</td>
+		            <td>E</td>
+		        </tr>
+		        <tr>
+		            <td>F</td>
+		            <td colspan="2">G</td>
+		        </tr>
+		    </tbody>
+		</table>
+		<p id="text" style="color: aqua"><div></div>文字文字</p>
+		<script>
+			function findNodeLevel(tree, targetNode) {
+			  let nodePath = [];
+			
+			  function traverse(node, level, path) {
+			    if (node === targetNode) {
+			      nodePath = path.slice();
+			      return;
+			    }
+			
+			    if (Array.isArray(node.children)) {
+			      path.push(node);
+			      for (let child of node.children) {
+			        traverse(child, level + 1, path);
+			      }
+			      path.pop();
+			    }
+			  }
+			
+			  traverse(tree, 0, []);
+			
+			  return nodePath;
+			}
+
+			// 示例树形结构
+			const tree = {
+			  id: 1,
+			  label: 'Root',
+			  children: [
+			    {
+			      id: 2,
+			      label: 'Node 1',
+			      children: [
+			        {
+			          id: 3,
+			          label: 'Node 1.1',
+			          children: []
+			        },
+			        {
+			          id: 4,
+			          label: 'Node 1.2',
+			          children: []
+			        }
+			      ]
+			    },
+			    {
+			      id: 5,
+			      label: 'Node 2',
+			      children: [
+			        {
+			          id: 6,
+			          label: 'Node 2.1',
+			          children: []
+			        },
+			        {
+			          id: 7,
+			          label: 'Node 2.2',
+			          children: [
+			            {
+			              id: 8,
+			              label: 'Node 2.2.1',
+			              children: []
+			            }
+			          ]
+			        }
+			      ]
+			    }
+			  ]
+			};
+			
+			// 查找层级
+			const targetNode = tree.children[1].children[0];
+		
+			console.log(targetNode);
+			const levelPath = findNodeLevel(tree, targetNode);
+			console.log(levelPath);
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>代码优化</title>
+	</head>
+	<body>
+		<script>
+			/* includes 是 ES7 新增的 API，与 indexOf 不同的是 includes 直接返回的是 Boolean 值，indexOf 则 返回的索引值, 数组和字符串都有 includes 方法。 */
+			// 需求：我们来实现一个身份认证方法，通过传入身份 Id 返回对应的验证结果
+			// 一般方案：
+			/* function verifyIdentity(identityId) {
+			  if (identityId == 1 || identityId == 2 || identityId == 3 || identityId == 4) {
+			    return '你的身份合法，请通行！'
+			  } else {
+			    return '你的身份不合法'
+			  }
+			} */
+			// includes 优化
+			function verifyIdentity(identityId) {
+			  if ([1, 2, 3, 4].includes(identityId)) {
+			    return '你的身份合法，请通行！'
+			  } else {
+			    return '你的身份不合法'
+			  }
+			}
+			let user = verifyIdentity(1);
+			console.log(user);
+		</script>
+	</body>
+</html>

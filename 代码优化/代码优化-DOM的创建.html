@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>代码优化</title>
+	</head>
+	<body>
+		<script>
+			/* 创建多个 dom 元素时，先将元素 append 到 DocumentFragment 中，最后统一将 DocumentFragment 添加到页面。 */
+			// 常规方法：
+			/* for (var i = 0; i < 1000; i++) {
+			  var el = document.createElement('p')
+			  el.innerHTML = i
+			  document.body.appendChild(el)
+			} */
+			// 使用 DocumentFragment 优化多次 append
+			/* var frag = document.createDocumentFragment()
+			for (var i = 0; i < 1000; i++) {
+			  var el = document.createElement('p')
+			  el.innerHTML = i
+			  frag.appendChild(el)
+			}
+			document.body.appendChild(frag); */
+			// 更优的方法:使用一次 innerHTML 赋值代替构建 dom 元素
+			var html = []
+			for (var i = 0; i < 1000; i++) {
+			  html.push('<p>' + i + '</p>')
+			}
+			document.body.innerHTML = html.join('')
+		</script>
+	</body>
+</html>
