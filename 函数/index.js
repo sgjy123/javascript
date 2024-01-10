@@ -36,3 +36,4 @@ function sayColor() {
 	alert(this.color)
 }
 sayColor.call(box)
+

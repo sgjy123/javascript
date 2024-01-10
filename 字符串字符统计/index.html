@@ -20,6 +20,30 @@
 			}
 			var aaa = count('hello world');
 			console.log(aaa)
+			
+			function arraysAreEqual(arr1, arr2) {
+			    if (arr1.length !== arr2.length) {
+			        return false;
+			    }
+			
+			    for (let i = 0; i < arr1.length; i++) {
+			        if (Array.isArray(arr1[i]) && Array.isArray(arr2[i])) {
+			            if (!arraysAreEqual(arr1[i], arr2[i])) {
+			                return false;
+			            }
+			        } else if (arr1[i] !== arr2[i]) {
+			            return false;
+			        }
+			    }
+			
+			    return true;
+			}
+			
+			const array1 = [1, 'apple', [3, 4]];
+			const array2 = [1, 'apple', [3, '4']];
+			
+			console.log(arraysAreEqual(array1, array2)); // true
+
 		</script>
 	</body>
 </html>
