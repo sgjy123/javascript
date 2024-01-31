@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>发光文字</title>
+		<style>
+			.neon {
+			    color: #cce7f8;
+			    font-size: 2.5rem;
+			    -webkit-animation: shining 0.5s alternate infinite;
+			    animation: shining 0.5s alternate infinite;
+				background-color: #000;
+			}
+			@-webkit-keyframes shining {
+			    from {
+			        text-shadow: 0 0 10px lightblue, 0 0 20px lightblue, 0 0 30px lightblue, 0 0 40px skyblue, 0 0 50px skyblue, 0 0 60px skyblue;
+			    }
+			
+			    to {
+			        text-shadow: 0 0 5px lightblue, 0 0 10px lightblue, 0 0 15px lightblue, 0 0 20px skyblue, 0 0 25px skyblue, 0 0 30px skyblue;
+			    }
+			}
+		</style>
+	</head>
+	<body>
+		<p class="neon">【前端实验室】分享前端最新、最实用前端技术</p>
+	</body>
+</html>

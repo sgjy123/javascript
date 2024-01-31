@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>渐变文字效果</title>
+		<style>
+			body {
+				background-color: #000;
+			}
+			.neon {
+				color: transparent;
+				background: linear-gradient(90deg, black 0%, white 50%, black 100%);
+				-webkit-background-clip: text;
+				background-clip: text;
+				-webkit-animation: shining 5s linear infinite;
+				animation: shining 5s linear infinite;
+				background-size: 80%;
+			}
+			@-webkit-keyframes shining {
+				from {
+					background-position: -500%;
+				}
+			
+				to {
+					background-position: 500%;
+				}
+			}
+			
+			@keyframes shining {
+				from {
+					background-position: -500%;
+				}
+			
+				to {
+					background-position: 500%;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<p class="neon">【前端实验室】分享前端最新、最实用前端技术</p>
+	</body>
+</html>
