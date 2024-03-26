@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>A* Pathfinding Demo</title>
+    <style>
+        #grid {
+            display: grid;
+            grid-template-columns: repeat(10, 50px);
+            justify-content: center;
+            margin-top: 50px;
+        }
+
+        .cell {
+            border: 1px solid gray;
+            height: 50px;
+            width: 50px;
+            background-color: white;
+        }
+
+        .cell.start {
+            background-color: green;
+        }
+
+        .cell.end {
+            background-color: red;
+        }
+
+        .cell.wall {
+            background-color: black;
+        }
+
+        .cell.path {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+<div id="grid"></div>
+<button type="button" id="clearCell">清空点位</button>
+<button type="button" id="seekingWay">执行</button>
+<script>
+	const CELL_COLORS = {
+	    DEFAULT: "#fff",
+	    WALL: "#000",
+	    START: "#00f",
+	    END: "#f00",
+	    OPEN: "#0f0",
+	    CLOSED: "#f0f",
+	    PATH: "#ff0",
+	};
+</script>
+<script src="./Cell.js"></script>
+<script src="./Grid.js"></script>
+<script src="./AStar.js"></script>
+<script src="./index.js"></script>
+</body>
+</html>

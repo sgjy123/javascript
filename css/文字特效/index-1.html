@@ -39,5 +39,57 @@
 	</head>
 	<body>
 		<p class="neon">【前端实验室】分享前端最新、最实用前端技术</p>
+		<script>
+			console.log('111')
+			window.onload = function() {
+				console.log('111')
+				window.addEventListener('click', function () {
+				  console.log('111')
+				    /* if (animal1.isActive()) {
+				        animal1.pause();
+				    } else {
+				        animal1.resume()
+				    } */
+				})
+			}
+			const data = [
+				{
+					name: "张三",
+					age: 17,
+					city: 11
+				},
+				{
+					name: "张三1",
+					age: 17,
+					city: 12
+				},
+				{
+					name: "张三2",
+					age: 17,
+					city: 13
+				}
+			];
+			let res = [];
+			for (let i = 0; i < data.length; i++) {
+				const item = data[i];
+				switch (item.city){
+					case 11:
+						item.city = '北京'
+						break;
+					case 12:
+						item.city = '天津'
+						break;
+					case 13:
+						item.city = '河南'
+						break;		
+					default:
+						break;
+				}
+				res.push(item);
+			}
+			console.log(res, data);
+			
+			
+		</script>
 	</body>
 </html>
