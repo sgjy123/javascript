@@ -33,7 +33,7 @@ class Grid {
     clear() {
         for (const rowCells of this.cells) {
             for (const cell of rowCells) {
-                if (cell !== this.startCell && cell !== this.endCell) {
+                if (cell) {
                     cell.isWall = false;
                     cell.g = 0;
                     cell.h = 0;
@@ -43,6 +43,8 @@ class Grid {
                 }
             }
         }
+		this.startCell = null;
+		this.endCell = null;
     }
 
     setStartCell(cell) {
