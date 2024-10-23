@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>列表拖动</title>
+  <style>
+    .item {
+      width: 200px;
+      height: 60px;
+      border: 1px solid #cbd5e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: move;
+      user-select: none;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+	/* 占位元素样式 */
+	.placeholder {
+	  box-sizing: border-box;
+	  background-color: #edf2f7;
+	  margin: 10px 0;
+	  border: 2px dashed #cbd5e0;
+	}
+  </style>
+</head>
+<body>
+  <div id="list">
+    <div class="item">第一个元素</div>
+    <div class="item">第二个元素</div>
+    <div class="item">第三个元素</div>
+    <div class="item">第四个元素</div>
+    <div class="item">第五个元素</div>
+  </div>
+  <script src="./index.js"></script>
+</body>

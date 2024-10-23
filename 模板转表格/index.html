@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Table Parser</title>
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div id="tableContainer"></div>
+
+<script>
+  // 模板字符串
+  const template = `
++------+------+------+------+------+
+| {{A1}} | {{B1}} | {{C1}} | {{D1}} | {{E1}} |
++------+------+------+------+------+
+| {{A2}} | {{B2}} | {{C2}} | {{D2}} | {{E2}} |
++------+------+------+------+------+
+| {{A3}} | {{B3}} | {{C3}} | {{D3}} | {{E3}} |
++------+------+------+------+------+
+| {{A4}} | {{B4}} | {{C4}} | {{D4}} | {{E4}} |
++------+------+------+------+------+
+| {{A5}} | {{B5}} | {{C5}} | {{D5}} | {{E5}} |
++------+------+------+------+------+
+`;
+
+  // 数据对象
+  const data = {
+    A1: 'DataA1',
+    B1: 'DataB1',
+    C1: 'DataC1',
+    D1: 'DataD1',
+    E1: 'DataE1',
+    A2: 'DataA2',
+    B2: 'DataB2',
+    C2: 'DataC2',
+    D2: 'DataD2',
+    E2: 'DataE2',
+    A3: 'DataA3',
+    B3: 'DataB3',
+    C3: 'DataC3',
+    D3: 'DataD3',
+    E3: 'DataE3',
+    A4: 'DataA4',
+    B4: 'DataB4',
+    C4: 'DataC4',
+    D4: 'DataD4',
+    E4: 'DataE4',
+    A5: 'DataA5',
+    B5: 'DataB5',
+    C5: 'DataC5',
+    D5: 'DataD5',
+    E5: 'DataE5',
+  };
+
+  // 将模板解析为表格并填充数据
+  function parseTemplate(template, data) {
+    const tableContainer = document.getElementById('tableContainer');
+    const lines = template.trim().split('\n');
+    const table = document.createElement('table');
+
+    lines.forEach(line => {
+      if (!line.includes('+')) {
+        const row = document.createElement('tr');
+        const cells = line.split('|').filter(cell => cell.trim() !== '');
+
+        cells.forEach(cell => {
+          const td = document.createElement('td');
+          const key = cell.trim().replace('{{', '').replace('}}', '');
+          td.textContent = data[key] || '';
+          row.appendChild(td);
+        });
+
+        table.appendChild(row);
+      }
+    });
+
+    tableContainer.appendChild(table);
+  }
+
+  // 调用解析函数
+  parseTemplate(template, data);
+</script>
+
+</body>
+</html>

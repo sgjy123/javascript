@@ -1,0 +1,24 @@
+<!DOCTYPE html>  
+<html lang="zh">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>随机名字生成器</title>  
+</head>  
+<body>  
+    <h1>随机名字生成器</h1>  
+    <p id="randomName"></p>  
+  
+    <script>  
+        // 定义名字数组  
+        var names = ["上官瑞泽", "上官泽瑞"];  
+  
+        // 随机选择一个名字  
+        var randomIndex = Math.floor(Math.random() * names.length);  
+        var randomName = names[randomIndex];  
+  
+        // 将随机名字显示在页面上  
+        document.getElementById("randomName").textContent = "随机生成的名字是：" + randomName;  
+    </script>  
+</body>  
+</html>
