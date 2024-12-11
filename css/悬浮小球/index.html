@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>悬浮小球</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			#app {
+				width: 40px;
+				height: 40px;
+				background-color: rgba(0, 0, 0, 0.15);
+				position: absolute;
+				left: 50px;
+				top: 50px;
+				cursor: pointer;
+				user-select: none;
+				/** 处理移动端只能小范围拖动 */
+				touch-action: none;
+				border-radius: 50%;
+				/** 处理移动端点击蓝色背景 */
+				-webkit-tap-highlight-color: transparent;
+			}
+
+			#app::before,
+			#app::after {
+				content: '';
+				display: block;
+				width: 120%;
+				height: 120%;
+				border-radius: 50%;
+				background-color: rgba(0, 0, 0, 0.15);
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			#app::after {
+				width: 80%;
+				height: 80%;
+			}
+
+			.parent {
+				width: 50vw;
+				height: 50vh;
+				background-color: #f1f1f1;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="parent">
+			<div id="app"></div>
+		</div>
+
+		<script>
+			const initDrag = (app, options = {}) => {
+				if (!app) return
+
+				const {
+					gaps = [10, 10], // 左右间距和上下间距（安全区）
+						relative = 'window', // 相对容器 window | parent
+						autoAdsorb = true, // 是否自动吸附
+						autoAlpha = true, // 是否自动改变透明度
+						onClick // 点击事件
+				} = options
+
+				let isPointerDown = false
+				const parentRect = app.parentElement.getBoundingClientRect()
+				const parentWidth = parentRect.width
+				const parentHeight = parentRect.height
+				let maxLeft = 0
+				let maxTop = 0
+				if (relative === 'parent') {
+					maxLeft = ((parentWidth || window.innerWidth) - app.clientWidth) - gaps[0]
+					maxTop = ((parentHeight || window.innerHeight) - app.clientHeight) - gaps[1]
+				} else {
+					maxLeft = window.innerWidth - app.clientWidth - gaps[0]
+					maxTop = window.innerHeight - app.clientHeight - gaps[1]
+				}
+				let startLeft, startTop; // 记录开始位置
+
+				app.addEventListener('pointerdown', function(e) {
+					isPointerDown = true
+					app.style.transition = 'none'
+					app.style.opacity = 1
+
+					startLeft = e.clientX;
+					startTop = e.clientY;
+				});
+
+				app.addEventListener('pointermove', function(e) {
+					app.setPointerCapture(e.pointerId)
+					if (isPointerDown) {
+						const left = app.getBoundingClientRect().left
+						const top = app.getBoundingClientRect().top
+						let newLeft = e.clientX - left
+						let newTop = e.clientY - top
+
+						let movedLeft = newLeft + left - app.clientWidth / 2
+						let movedTop = newTop + top - app.clientHeight / 2
+
+						// 限制上、左移出边界（默认边界为窗口宽高）
+						movedLeft = Math.max(gaps[0], movedLeft)
+						movedTop = Math.max(gaps[0], movedTop)
+
+						// 限制下、右移出边界（默认边界为窗口宽高）
+						movedLeft = Math.min(movedLeft, maxLeft)
+						movedTop = Math.min(movedTop, maxTop)
+
+						app.style.left = movedLeft + 'px'
+						app.style.top = movedTop + 'px'
+					}
+				});
+
+				// 自动降低透明度
+				let autoAlphaTimer = null
+				const handleAutoAlpha = () => {
+					autoAlphaTimer && clearTimeout(autoAlphaTimer)
+					autoAlphaTimer = setTimeout(() => {
+						app.style.opacity = 0.7
+					}, 1000)
+				}
+
+				// 自动吸附
+				let autoAdsorbTimer = null
+				const handleAutoAdsorb = () => {
+					autoAdsorbTimer && clearTimeout(autoAdsorbTimer)
+					autoAdsorbTimer = setTimeout(() => {
+						const left = app.getBoundingClientRect().left
+						const movedLeft = left > maxLeft / 2 ? maxLeft : gaps[0]
+						app.style.transition = 'all 300ms ease-in-out'
+						app.style.left = movedLeft + 'px'
+						autoAlpha && handleAutoAlpha()
+					}, 100)
+				}
+
+				app.addEventListener('pointerup', function(e) {
+					isPointerDown = false
+
+					// 判断是否为点击事件
+					const endX = e.clientX;
+					const endY = e.clientY;
+					const distance = Math.sqrt((endX - startLeft) ** 2 + (endY - startTop) ** 2);
+
+					// 如果移动距离小于 5 像素，则认为是点击
+					if (distance < 5) {
+						app.style.transition = 'none';
+						app.style.opacity = 1;
+						app.style.left = startLeft - app.clientWidth / 2 + 'px'
+						app.style.top = startTop - app.clientHeight / 2 + 'px'
+
+						onClick && onClick()
+					} else {
+						if (autoAdsorb) {
+							handleAutoAdsorb()
+						} else if (autoAlpha) {
+							handleAutoAlpha()
+						}
+					}
+				});
+			}
+
+			initDrag(document.getElementById('app'), {
+				onClick: () => {
+					alert('click')
+				}
+			})
+		</script>
+	</body>
+
+</html>

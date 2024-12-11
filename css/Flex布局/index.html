@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.container {
+			    display: flex;
+			    flex-wrap: wrap; /* 允许换行 */
+			}
+			
+			.item {
+			    flex: 1 1 45%; /* 每个项目的宽度大约为容器宽度的45%，留出一定的间隔 */
+			    margin: 1%;
+			    box-sizing: border-box;
+			    background-color: #f9f9f9;
+			    border: 1px solid #ccc;
+			    padding: 20px;
+			    text-align: center;
+			}
+			
+			/* 设置第一个项目的高度 */
+			.item-1 {
+			    height: 300px; /* 第一个项目的高度 */
+			}
+			
+			/* 设置其他项目的高度 */
+			.item:not(.item-1) {
+			    height: 100px; /* 其他项目的高度 */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+		    <div class="item item-1">Item 1</div>
+		    <div class="item item-2">Item 2</div>
+		    <div class="item item-3">Item 3</div>
+		    <div class="item item-4">Item 4</div>
+		    <div class="item item-5">Item 4</div>
+		    <div class="item item-6">Item 4</div>
+		    <div class="item item-7">Item 4</div>
+		    <!-- 更多项目... -->
+		</div>
+	</body>
+</html>

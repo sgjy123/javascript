@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.grid-container {
+			    display: grid;
+			    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 自动填充列，每列最小宽度为200px */
+			    gap: 10px; /* 项目之间的间距 */
+			}
+			
+			.grid-item {
+			    background-color: #f9f9f9;
+			    border: 1px solid #ccc;
+			    padding: 20px;
+			    text-align: center;
+			}
+			
+			/* 设置第一个项目的高度 */
+			.item-1 {
+			    grid-row: span 2 / span 1; /* 第一个项目占据两行 */
+			    height: 200px; /* 高度可以固定或自动调整 */
+			}
+			
+			/* 设置其他项目的高度 */
+			.grid-item:not(.item-1) {
+			    height: 100px; /* 其他项目的高度 */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="grid-container">
+		    <div class="grid-item item-1">Item 1</div>
+		    <div class="grid-item item-2">Item 2</div>
+		    <div class="grid-item item-3">Item 3</div>
+		    <div class="grid-item item-4">Item 4</div>
+		    <div class="grid-item item-5">Item 5</div>
+		    <div class="grid-item item-6">Item 6</div>
+		    <div class="grid-item item-7">Item 7</div>
+		    <div class="grid-item item-8">Item 8</div>
+			<div class="grid-item item-9">Item 9</div>
+			<div class="grid-item item-10">Item 10</div>
+			<div class="grid-item item-11">Item 11</div>
+		    <!-- 更多项目... -->
+		</div>
+	</body>
+</html>
