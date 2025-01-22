@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>tabs</title>
+	</head>
+	<style>
+		/* 隐藏默认的radio按钮 */
+		input[name="tab"] {
+			display: none;
+		}
+
+		/* 设置tabs容器样式 */
+		.tabs {
+			width: 100%;
+			max-width: 600px;
+			margin: 0 auto;
+			position: relative;
+			/* 使绝对定位的伪元素相对于.tabs定位 */
+		}
+
+		/* 设置每个tab的样式 */
+		.tab-label {
+			display: inline-block;
+			padding: 10px 20px;
+			background-color: #ccc;
+			cursor: pointer;
+			border: 1px solid #aaa;
+			border-bottom: none;
+			transition: all 0.3s ease;
+			position: relative;
+			z-index: 1;
+			/* 保证标签在滑动条之上 */
+		}
+
+		/* 当鼠标悬停在标签上时改变颜色 */
+		.tab-label:hover {
+			background-color: #bbb;
+		}
+
+		/* 选中的tab标签样式 */
+		input[name="tab"]:checked+label {
+			background-color: #fff;
+			border-bottom: 1px solid #fff;
+			font-weight: bold;
+		}
+
+		/* 滑动条 */
+		.tabs::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100px;
+			/* 初始宽度，需要和第一个标签的宽度匹配 */
+			height: 2px;
+			background-color: #3498db;
+			transition: transform 0.3s ease;
+		}
+
+		/* 动态设置滑动条位置 */
+		#tab1:checked~.tabs::after {
+			transform: translateX(0);
+		}
+
+		#tab2:checked~.tabs::after {
+			transform: translateX(100px);
+		}
+
+		/* 根据实际标签宽度调整 */
+		#tab3:checked~.tabs::after {
+			transform: translateX(200px);
+		}
+
+		/* 根据实际标签宽度调整 */
+
+		/* 设置tab内容的样式 */
+		.tab-content {
+			opacity: 0;
+			max-height: 0;
+			overflow: hidden;
+			padding: 0 20px;
+			border: 1px solid #aaa;
+			background-color: #fff;
+			transition: opacity 0.3s ease, max-height 0.5s ease;
+			position: relative;
+			z-index: 0;
+		}
+
+		/* 显示选中tab对应的内容 */
+		#tab1:checked~.tab-content:nth-of-type(1),
+		#tab2:checked~.tab-content:nth-of-type(2),
+		#tab3:checked~.tab-content:nth-of-type(3) {
+			opacity: 1;
+			max-height: 500px;
+			/* 设定一个足够大的max-height值以容纳所有可能的内容 */
+			padding: 20px;
+			transition: opacity 0.3s ease, max-height 0.5s ease 0.3s;
+			/* 延迟max-height的变化，使得先看到淡入效果 */
+		}
+	</style>
+	</head>
+	<body>
+
+		<div class="tabs">
+			<!-- Tab controls -->
+			<input type="radio" name="tab" id="tab1" checked>
+			<label class="tab-label" for="tab1">Tab 1</label>
+			<input type="radio" name="tab" id="tab2">
+			<label class="tab-label" for="tab2">Tab 2</label>
+			<input type="radio" name="tab" id="tab3">
+			<label class="tab-label" for="tab3">Tab 3</label>
+
+			<!-- Tab contents -->
+			<div class="tab-content">Content of Tab 1. This is some example text to demonstrate the animation effect
+				when switching between tabs.</div>
+			<div class="tab-content">Content of Tab 2. Here you can see that the content area has a smooth transition
+				effect as it changes from one tab to another.</div>
+			<div class="tab-content">Content of Tab 3. The transition effect includes both a fade-in/fade-out and a
+				change in height to accommodate the new content.</div>
+		</div>
+
+	</body>
+</html>

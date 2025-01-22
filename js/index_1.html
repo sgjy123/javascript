@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function addCustomFields(mainArray, fieldConfig) {
+			  return mainArray.map(mainItem => {
+			    // 克隆主对象以避免修改原始数据
+			    const newItem = { ...mainItem };
+			
+			    // 遍历配置对象，为每个配置项添加新字段
+			    Object.entries(fieldConfig).forEach(([fieldName, configFn]) => {
+			      // 调用配置函数，传入主对象和 fieldViews 数组
+			      newItem[fieldName] = configFn(newItem, newItem.fieldViews || []);
+			    });
+			
+			    return newItem;
+			  });
+			}
+			
+			// 示例配置对象
+			const fieldConfig = {
+			  displayListPcFieldNames: (mainItem, fieldViews) =>
+			    fieldViews.filter(fieldView => fieldView.displayListPc === 1)
+			              .map(fieldView => fieldView.fieldName),
+			  
+			  // 添加其他字段的配置
+			  displayTermPcFieldNames: (mainItem, fieldViews) =>
+			    fieldViews.filter(fieldView => fieldView.displayTermPc === 1)
+			              .map(fieldView => fieldView.fieldName),
+			  
+			  authEditFieldNames: (mainItem, fieldViews) =>
+			    fieldViews.filter(fieldView => fieldView.authEdit === 1)
+			              .map(fieldView => fieldView.fieldName),
+			  
+			  // 可以继续添加更多字段...
+			};
+			
+			// 示例调用
+			const mainArray = [
+			  {
+			    "id": 2,
+			    "namespaceId": 27830221,
+			    "appId": 3460,
+			    "formOriginId": 1000821,
+			    "targetText": "[{\"targetId\":27,\"targetName\":\"孙倩倩\",\"targetType\":\"person\",\"departmentId\":2,\"departmentType\":\"source_department\"}]",
+			    "fieldViews": [
+			      {
+			        "id": 2,
+			        "namespaceId": 27830221,
+			        "viewId": 2,
+			        "fieldIdentityId": 1000,
+			        "fieldName": "商品名",
+			        "fieldOrder": 0,
+			        "authEdit": 1,
+			        "displayListPc": 1,
+			        "displayTermPc": 1,
+			        "displayListMobile": 1,
+			        "displayTermMobile": 1,
+			        "displayFixColumn": 0,
+			        "defaultValueMobile": "{}",
+			        "status": 1,
+			        "createTime": 1733821874000
+			      },
+			      {
+			        "id": 3,
+			        "namespaceId": 27830221,
+			        "viewId": 2,
+			        "fieldIdentityId": 1002,
+			        "fieldName": "数量",
+			        "fieldOrder": 1,
+			        "authQuery": 1,
+			        "authEdit": 1,
+			        "displayListPc": 1,
+			        "displayTermPc": 1,
+			        "displayListMobile": 1,
+			        "displayTermMobile": 1,
+			        "displayFixColumn": 0,
+			        "defaultValueMobile": "{}",
+			        "status": 1,
+			        "createTime": 1733821874000
+			      },
+			      {
+			        "id": 4,
+			        "namespaceId": 27830221,
+			        "viewId": 2,
+			        "fieldIdentityId": 1001,
+			        "fieldName": "单价",
+			        "fieldOrder": 2,
+			        "authQuery": 1,
+			        "authEdit": 1,
+			        "displayListPc": 1,
+			        "displayTermPc": 1,
+			        "displayListMobile": 1,
+			        "displayTermMobile": 1,
+			        "displayFixColumn": 0,
+			        "defaultValueMobile": "{}",
+			        "status": 1,
+			        "createTime": 1733821874000
+			      },
+			      // 其他 fieldViews 对象...
+			    ],
+			    "status": 1,
+			    "createTime": "2024-12-10 09:11:13",
+			    "createUid": 11
+			  }
+			];
+			
+			const updatedMainArray = addCustomFields(mainArray, fieldConfig);
+			
+			console.log(updatedMainArray);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			.p {
+				stroke: red;
+				stroke-width: 10;
+				stroke-dasharray: var(--length);
+				stroke-dashoffset: var(--length / 2);
+				fill: none;
+				
+			}
+			.icon .p:hover {
+				animation: stroke 2s forwards infinite;
+			}
+			@keyframes stroke {
+				to {
+					stroke-dasharray: 0;
+					stroke-dashoffset: var(--length / 3);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<svg t="1737532736131" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+			p-id="914" width="128" height="128">
+			<path
+				d="M702.3616 108.6976H320a220.8768 220.8768 0 0 0-220.6208 220.672V711.68a220.8768 220.8768 0 0 0 220.6208 220.6208h382.3616A220.8768 220.8768 0 0 0 922.9824 711.68V329.3696a220.8768 220.8768 0 0 0-220.6208-220.672zM882.0224 711.68a179.8656 179.8656 0 0 1-179.6608 179.6608H320A179.8656 179.8656 0 0 1 140.3392 711.68V329.3696a179.8656 179.8656 0 0 1 179.6608-179.712h382.3616a179.8656 179.8656 0 0 1 179.6608 179.712z"
+				fill="#59260F" p-id="915"></path>
+			<path
+				d="M741.12 372.1216l-151.808 3.2768a20.48 20.48 0 0 0 0.8704 40.96l101.2736-2.2016-182.4256 180.8896a5.632 5.632 0 0 1-4.4544 1.792 6.2976 6.2976 0 0 1-4.352-1.9456L424.96 514.7136a47.1552 47.1552 0 0 0-67.072-1.5872l-117.76 114.0736a20.48 20.48 0 1 0 28.4672 29.44L386.304 542.72a6.5024 6.5024 0 0 1 4.4032-1.7408 6.2976 6.2976 0 0 1 4.352 1.9456l75.3152 80.1792a47.1552 47.1552 0 0 0 67.4816 1.1776l183.1936-181.6576v93.952a20.48 20.48 0 0 0 40.96 0V392.6016a20.48 20.48 0 0 0-6.144-14.6432 20.48 20.48 0 0 0-14.7456-5.8368z"
+				fill="#59260F" p-id="916" class="p"></path>
+		</svg>
+		<script>
+			const paths = document.querySelectorAll('.icon .p');
+			paths.forEach((path) => {
+				const len = path.getTotalLength();
+				path.style.setProperty('--length', len);
+			})
+		</script>
+	</body>
+</html>

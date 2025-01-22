@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script>
+			function sortArrayByFieldOrder(originalArray, orderedArray) {
+				// 创建一个映射，以 identityId 为键，fieldOrder 为值
+				const orderMap = new Map(orderedArray.map(item => [item.fieldIdentityId, item.fieldOrder]));
+
+				// 分离出需要排序的元素和多余的元素
+				const toBeSorted = originalArray.filter(item => orderMap.has(item.identityId));
+				const extraItems = originalArray.filter(item => !orderMap.has(item.identityId));
+
+				// 对需要排序的元素进行排序
+				toBeSorted.sort((a, b) => orderMap.get(a.identityId) - orderMap.get(b.identityId));
+
+				// 如果还需要在原始数组中添加 fieldOrder 属性，可以这样做：
+				toBeSorted.forEach(item => {
+					item.fieldOrder = orderMap.get(item.identityId);
+				});
+
+				// 合并排序后的元素和多余的元素
+				return [...toBeSorted, ...extraItems];
+			}
+
+			// 示例调用
+			const originalArray = [{
+					"fieldName": "商品名",
+					"fieldType": "SINGLE_LINE_TEXT",
+					"identityId": 1000
+				},
+				{
+					"fieldName": "数量",
+					"fieldType": "NUMBER",
+					"identityId": 1002
+				},
+				{
+					"fieldName": "单价",
+					"fieldType": "NUMBER",
+					"identityId": 1001
+				},
+				{
+					"fieldName": "备注",
+					"fieldType": "MULTI_LINE_TEXT",
+					"identityId": 1003
+				} // 这个是多余项
+			];
+
+			const orderedArray = [{
+					"fieldName": "商品名",
+					"fieldType": "SINGLE_LINE_TEXT",
+					"fieldIdentityId": 1000,
+					"fieldOrder": 1
+				},
+				{
+					"fieldName": "数量",
+					"fieldType": "NUMBER",
+					"fieldIdentityId": 1002,
+					"fieldOrder": 2
+				},
+				{
+					"fieldName": "单价",
+					"fieldType": "NUMBER",
+					"fieldIdentityId": 1001,
+					"fieldOrder": 0
+				}
+			];
+
+			const sortedAndExtras = sortArrayByFieldOrder(originalArray, orderedArray);
+
+			console.log(sortedAndExtras);
+		</script>
+		<!-- <script>
+			// 原始数组
+			const originalArray = [
+			  { "fieldName": "商品名", "fieldType": "SINGLE_LINE_TEXT", "identityId": 1000 },
+			  { "fieldName": "备注", "fieldType": "MULTI_LINE_TEXT", "identityId": 1003 }, // 这个是多余项
+			  { "fieldName": "数量", "fieldType": "NUMBER", "identityId": 1002 },
+			  // { "fieldName": "单价", "fieldType": "NUMBER", "identityId": 1001 },
+			  { "fieldName": "备注1", "fieldType": "MULTI_LINE_TEXT", "identityId": 1004 }, // 这个是多余项
+			  { "fieldName": "备注2", "fieldType": "MULTI_LINE_TEXT", "identityId": 1005 }, // 这个是多余项
+			];
+			
+			// 包含 fieldOrder 的数组
+			const orderedArray = [
+			  { "fieldName": "商品名", "fieldType": "SINGLE_LINE_TEXT", "identityId": 1000, "fieldOrder": 1 },
+			  { "fieldName": "数量", "fieldType": "NUMBER", "identityId": 1002, "fieldOrder": 2 },
+			  { "fieldName": "单价", "fieldType": "NUMBER", "identityId": 1001, "fieldOrder": 0 }
+			];
+			
+			// 创建一个映射，以 identityId 为键，fieldOrder 为值
+			const orderMap = new Map(orderedArray.map(item => [item.identityId, item.fieldOrder]));
+			
+			// 分离出需要排序的元素和多余的元素
+			const toBeSorted = originalArray.filter(item => orderMap.has(item.identityId));
+			const extraItems = originalArray.filter(item => !orderMap.has(item.identityId));
+			
+			// 对需要排序的元素进行排序
+			toBeSorted.sort((a, b) => {
+			  return orderMap.get(a.identityId) - orderMap.get(b.identityId);
+			});
+			
+			// 如果还需要在原始数组中添加 fieldOrder 属性，可以这样做：
+			toBeSorted.forEach(item => {
+			  item.fieldOrder = orderMap.get(item.identityId);
+			});
+			
+			// 合并排序后的元素和多余的元素
+			const sortedAndExtras = [...toBeSorted, ...extraItems];
+			
+			console.log(sortedAndExtras);
+		</script> -->
+		<script>
+			function flattenTree(nodes) {
+				let result = [];
+
+				function recurse(currentNodes) {
+					currentNodes.forEach(node => {
+						// 如果是叶子节点(leafFlag为1)，则直接添加到结果数组
+						if (node.leafFlag === 1) {
+							if (node.entryInfo) {
+								result.push({
+									appEntryId: node.entryInfo?.id || '',
+									appId: node.entryInfo?.appId || '',
+									dataType: node.entryInfo?.dataType || '',
+									iconUrl: node.entryInfo?.iconUrl || '',
+									name: node.entryInfo?.name || '',
+									appParam: node.entryInfo?.appConfig?.appParam || '',
+								});
+							}
+						}
+						// 如果有子节点，则递归处理子节点
+						if (node.subTree) {
+							recurse(node.subTree);
+						}
+					});
+				}
+
+				// 开始递归
+				recurse(nodes);
+
+				return result;
+			}
+
+			// 使用示例：
+			const treeData = [{
+				"id": 5045,
+				"namespaceId": 27830221,
+				"parentId": 0,
+				"name": "知识库",
+				"entryType": 1,
+				"locationType": 4,
+				"order": 12,
+				"leafFlag": 0,
+				"iconUri": "cs://1/image/0/27830221/aGZwVrhGWUPQ4UKgx4vsnG.png?pxh=32&pxw=32",
+				"iconUrl": "https://parkdev04.esint.com.cn:443/image/0/27830221/aGZwVrhGWUPQ4UKgx4vsnG.png?pxh=32&pxw=32&acl=1&sign=uyvHcwAiN7",
+				"updateTime": 1736930089000,
+				"path": "/5045",
+				"subTree": [{
+						"id": 5044,
+						"namespaceId": 27830221,
+						"parentId": 5045,
+						"name": "知识库",
+						"entryType": 1,
+						"appId": 3316,
+						"moduleId": 60510,
+						"terminalType": 0,
+						"sceneType": 0,
+						"locationType": 4,
+						"entryId": 9526,
+						"order": 1,
+						"leafFlag": 1,
+						"iconUri": "cs://1/image/0/27830221/iBdoCGR5n57uHa7WSZibx5.png?pxh=48&pxw=48",
+						"iconUrl": "https://parkdev04.esint.com.cn:443/image/0/27830221/iBdoCGR5n57uHa7WSZibx5.png?pxh=48&pxw=48&acl=1&sign=fWhBET1WFI",
+						"updateTime": 1736930089000,
+						"path": "/5045/5044",
+						"entryInfo": {
+							"id": 9526,
+							"name": "知识库",
+							"iconUrl": "https://parkdev04.esint.com.cn:443/image/0/27830221/iBdoCGR5n57uHa7WSZibx5.png?pxh=48&pxw=48&acl=1&sign=fWhBET1WFI",
+							"dataType": "knowledge-base",
+							"parentId": 5045,
+							"moduleId": 60510,
+							"appId": 3316,
+							"configId": 3316,
+							"sortNum": 1,
+							"appConfig": {
+								"id": 3316,
+								"originId": 3316,
+								"name": "知识库",
+								"moduleId": 60510,
+								"instanceConfig": "{\"url\":\"${home.url}/knowledge-base/build/index.html?ns=${namespaceId}#sign_suffix\"}",
+								"moduleControlType": "community_control",
+								"status": 2,
+								"appType": 1,
+								"description": "知识库",
+								"appNo": "AC45LK51GP",
+								"iconUri": "cs://1/image/0/27830221/UEw6kqPrhGMwCokaVibsrE.png?pxh=32&pxw=32",
+								"sourceType": 1,
+								"appCategoryId": 1,
+								"createTime": 1693276810000,
+								"namespaceId": 27830221,
+								"operatorUid": 11,
+								"creatorUid": 11,
+								"entryUrlOpenType": 0
+							}
+						},
+						"hasSubmodules": 0,
+						"entryUrlOpenType": 0,
+						"portalViewId": 8,
+						"iconType": 2
+					},
+					{
+						"id": 5091,
+						"namespaceId": 27830221,
+						"parentId": 5045,
+						"name": "知识库统计",
+						"entryType": 1,
+						"appId": 3334,
+						"moduleId": 60510,
+						"terminalType": 0,
+						"sceneType": 0,
+						"locationType": 4,
+						"entryId": 9917,
+						"order": 2,
+						"leafFlag": 1,
+						"iconUri": "cs://1/image/0/27830221/avegcUbMkAQYrgALmptjcY.png?pxh=88&pxw=112",
+						"iconUrl": "https://parkdev04.esint.com.cn:443/image/0/27830221/avegcUbMkAQYrgALmptjcY.png?pxh=88&pxw=112&acl=1&sign=FnHLrGR-of",
+						"updateTime": 1736930089000,
+						"path": "/5045/5091",
+						"entryInfo": {
+							"id": 9917,
+							"name": "知识库统计",
+							"iconUrl": "https://parkdev04.esint.com.cn:443/image/0/27830221/avegcUbMkAQYrgALmptjcY.png?pxh=88&pxw=112&acl=1&sign=FnHLrGR-of",
+							"dataType": "knowledge-statistics",
+							"parentId": 5045,
+							"moduleId": 60510,
+							"appId": 3334,
+							"configId": 3334,
+							"sortNum": 2,
+							"appConfig": {
+								"id": 3334,
+								"originId": 3334,
+								"name": "知识库统计",
+								"moduleId": 60510,
+								"instanceConfig": "{\"url\":\"${home.url}/knowledge-base/build/index.html?ns=${namespaceId}#sign_suffix\"}",
+								"moduleControlType": "community_control",
+								"status": 2,
+								"appType": 1,
+								"appNo": "ACCCKEVX33",
+								"iconUri": "cs://1/image/0/27830221/xroNMHLdyAyfek4ZBMUNz9.png?pxh=88&pxw=112",
+								"defaultAppFlag": 0,
+								"sourceType": 1,
+								"appCategoryId": 1,
+								"createTime": 1704869681000,
+								"namespaceId": 27830221,
+								"operatorUid": 11,
+								"creatorUid": 11,
+								"entryUrlOpenType": 0
+							}
+						},
+						"hasSubmodules": 0,
+						"entryUrlOpenType": 0,
+						"portalViewId": 8,
+						"iconType": 2
+					}
+				],
+				"entryUrlOpenType": 0,
+				"portalViewId": 8,
+				"iconType": 1
+			}];
+			const flattenedData = flattenTree(treeData);
+
+			console.log(flattenedData, 'flattenedData');
+		</script>
+	</body>
+</html>
