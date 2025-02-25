@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>moment.js快速查询</title>
+	</head>
+	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+		<script>
+			const quickTimeEnum = (timeFormat) => {
+			    const DATEFORMAT = {
+			        1: 'YYYY-MM-DD',
+			        2: 'YYYY-MM',
+			        3: 'YYYY',
+			    };
+			
+			    const now = moment();
+			    const currentQuarter = Math.ceil(now.month() / 3); // 当前季度
+			
+			    // 计算上季度的开始和结束日期
+			    let startOfLastQuarter, endOfLastQuarter;
+			    if (currentQuarter === 1) {
+			        // 如果当前是第一季度，则上季度是去年的第四季度
+			        startOfLastQuarter = moment(now).subtract(1, 'year').quarter(4).startOf('quarter');
+			        endOfLastQuarter = moment(now).subtract(1, 'year').quarter(4).endOf('quarter');
+			    } else {
+			        // 否则，上季度是当前年份的上一个季度
+			        startOfLastQuarter = moment(now).quarter(currentQuarter - 1).startOf('quarter');
+			        endOfLastQuarter = moment(now).quarter(currentQuarter - 1).endOf('quarter');
+			    }
+			
+			    // 计算本季度的开始和结束日期
+			    const startOfCurrentQuarter = moment(now).quarter(currentQuarter).startOf('quarter');
+			    const endOfCurrentQuarter = moment(now).quarter(currentQuarter).endOf('quarter');
+			
+			    return new Map([
+			        [1, { name: '昨天', info: moment().subtract(1, 'days').format(DATEFORMAT[timeFormat]) }],
+			        [2, { name: '今天', info: moment().format(DATEFORMAT[timeFormat]) }],
+			        [3, { name: '上周', info: [moment().subtract(1, 'weeks').startOf('week').format(DATEFORMAT[timeFormat]), moment().subtract(1, 'weeks').endOf('week').format(DATEFORMAT[timeFormat])] }],
+			        [4, { name: '本周', info: [moment().startOf('week').format(DATEFORMAT[timeFormat]), moment().format(DATEFORMAT[timeFormat])] }],
+			        [5, { name: '近7天', info: [moment().subtract(7, 'days').format(DATEFORMAT[timeFormat]), moment().subtract(1, 'days').format(DATEFORMAT[timeFormat])] }],
+			        [6, { name: '近30天', info: [moment().subtract(30, 'days').format(DATEFORMAT[timeFormat]), moment().subtract(1, 'days').format(DATEFORMAT[timeFormat])] }],
+			        [7, { name: '上月', info: [moment().subtract(1, 'months').startOf('month').format(DATEFORMAT[timeFormat]), moment().subtract(1, 'months').endOf('month').format(DATEFORMAT[timeFormat])] }],
+			        [8, { name: '本月', info: [moment().startOf('month').format(DATEFORMAT[timeFormat]), moment().format(DATEFORMAT[timeFormat])] }],
+			        [9, { 
+			            name: '上季度', 
+			            info: [
+			                startOfLastQuarter.format(DATEFORMAT[timeFormat]), 
+			                endOfLastQuarter.format(DATEFORMAT[timeFormat])
+			            ] 
+			        }],
+			        [10, { 
+			            name: '本季度', 
+			            info: [
+			                startOfCurrentQuarter.format(DATEFORMAT[timeFormat]), 
+			                endOfCurrentQuarter.format(DATEFORMAT[timeFormat])
+			            ] 
+			        }],
+			        [11, { name: '去年', info: [moment().subtract(1, 'years').startOf('year').format(DATEFORMAT[timeFormat]), moment().subtract(1, 'years').endOf('year').format(DATEFORMAT[timeFormat])] }],
+			        [12, { name: '今年', info: [moment().startOf('year').format(DATEFORMAT[3]), moment().format(DATEFORMAT[3])] }],
+			    ]);
+			};
+			const quickTimeMap = quickTimeEnum(1);
+			// 筛选并整合新的数组
+			const filterAndReorganize = (map, keys) => {
+			    return Array.from(map)
+			        .filter(([key]) => keys.includes(key.toString())) // 筛选出指定的 key
+			        .map(([, value]) => value); // 提取第二个对象的内容 {name: '', info: ''}
+			};
+			const keysToFilter = ['1', '2', '3', '4']; // 需要筛选的 key
+			const filteredArray = filterAndReorganize(quickTimeMap, keysToFilter);
+			console.log(filteredArray);
+			
+		</script>
+	</body>
+</html>
