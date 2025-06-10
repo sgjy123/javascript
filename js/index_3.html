@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			function delay(ms) {
+				return new Promise(resolve => setTimeout(resolve, ms))
+			}
+			async function delayedTesk() {
+				console.log('开始');
+				await delay(2000);
+				console.log('2秒后');
+			}
+			delayedTesk();
+		</script>
+	</body>
+</html>
